@@ -1,17 +1,17 @@
 # base information
-FROM debian:jessie
+FROM debian:buster
 MAINTAINER Marco Neumann <marco@crepererum.net>
 
 # versions
-ENV LIBASR_VERSION="1.0.2" \
-    OPENSMPTD_VERSION="6.0.3p1" \
-    LIBASR_SHA512="a4825a30130f70a452044c484871ac37459e1c1e6659c4c38dead7d3abbdaecb3517b7accb46586537975fee033857566fd279ecf97ae87dc80bb6bcdd467d3e" \
-    OPENSMPTD_SHA512="e579818a0ddbe637deb5a4e40f43eaf797783903ceac18fd89a57581b135b9e407d424e1a70ff7b4b06a0ee50bafb6e8ab2451371917887904b06ff1b55d320f"
+ENV LIBASR_VERSION="1.0.4" \
+    OPENSMPTD_VERSION="6.8.0p2" \
+    LIBASR_SHA512="6f189f9f492da8204396fe1246b4a0162751b2060a881469649ecf987b7ac1cc834193d2052e80a09bf94fedc8fc64123e9dfcfe3a2e4395f9e26d37afc84501" \
+    OPENSMPTD_SHA512="48f152b75575146fdd09bdf47123041ea62fefb6e5de33a69826bf91a2126a918f8db1caffadb2f142a1a21de8126d492de88cb65bdf169e61c0b22d3e78d290"
 
 # upgrade system and install deps
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
-    apt-get install -y --no-install-recommends bison ca-certificates file gcc libevent-dev libssl-dev make wget && \
+    apt-get install -y --no-install-recommends bison ca-certificates file gcc libevent-dev libssl-dev make wget build-essential libz-dev && \
     rm -rf /root/.cache /var/cache/*
 
 # build opensmtpd and prepare system
